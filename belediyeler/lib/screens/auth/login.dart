@@ -21,33 +21,35 @@ class _LoginState extends State<Login> {
         margin: const EdgeInsets.all(10),
         child: Form(
           key: _formkey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextFormField(
-                validator: (input) {
-                  if (input.isEmpty) {
-                    return 'Email bölümü boş bırakılamaz.';
-                  }
-                },
-                onSaved: (input) => _email = input,
-                decoration: InputDecoration(labelText: 'Email'),
-              ),
-              TextFormField(
-                validator: (input) {
-                  if (input.length < 6) {
-                    return 'Şifre bölümü boş bırakılamaz.';
-                  }
-                },
-                onSaved: (input) => _password = input,
-                decoration: InputDecoration(labelText: 'Şifre'),
-                obscureText: true,
-              ),
-              RaisedButton(
-                onPressed: signIn,
-                child: Text('GİRİŞ'),
-              )
-            ],
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextFormField(
+                  validator: (input) {
+                    if (input.isEmpty) {
+                      return 'Email bölümü boş bırakılamaz.';
+                    }
+                  },
+                  onSaved: (input) => _email = input,
+                  decoration: InputDecoration(labelText: 'Email'),
+                ),
+                TextFormField(
+                  validator: (input) {
+                    if (input.length < 6) {
+                      return 'Şifre bölümü boş bırakılamaz.';
+                    }
+                  },
+                  onSaved: (input) => _password = input,
+                  decoration: InputDecoration(labelText: 'Şifre'),
+                  obscureText: true,
+                ),
+                RaisedButton(
+                  onPressed: signIn,
+                  child: Text('GİRİŞ'),
+                )
+              ],
+            ),
           ),
         ),
       ),
