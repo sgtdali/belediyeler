@@ -1,4 +1,4 @@
-import 'package:belediyeler/screens/auth/register.dart';
+import 'package:belediyeler/auth/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

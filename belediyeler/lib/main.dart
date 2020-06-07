@@ -1,8 +1,5 @@
-import 'package:belediyeler/screens/auth/login.dart';
-import 'package:belediyeler/screens/auth/register.dart';
-import 'package:belediyeler/screens/wrapper.dart';
+import 'package:belediyeler/auth/login.dart';
 import 'package:flutter/material.dart';
-
 
 void main() => runApp(MyApp());
 
