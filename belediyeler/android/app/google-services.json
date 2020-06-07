@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "524261676512",
+    "firebase_url": "https://belediyeler-9a30d.firebaseio.com",
+    "project_id": "belediyeler-9a30d",
+    "storage_bucket": "belediyeler-9a30d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524261676512:android:01403b991fae6cfacb8785",
+        "android_client_info": {
+          "package_name": "com.tyfnbtu.belediyeler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524261676512-cgil1eb0t7ne9gge2p9hgq11irhn9pq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVQXVr3zzwMVC0ybYEoPT3fGagWi6mg_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524261676512-cgil1eb0t7ne9gge2p9hgq11irhn9pq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
