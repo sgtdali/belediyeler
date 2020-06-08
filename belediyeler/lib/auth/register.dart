@@ -8,7 +8,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   String _email = '', _password = '', _name = '', _surname = '';
-  int _age;
+  String _age = '';
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final AuthService _authService = AuthService();
 
@@ -72,8 +72,9 @@ class _RegisterState extends State<Register> {
                   decoration: InputDecoration(labelText: 'Soyisim'),
                 ),
                 TextFormField(
+
                   onChanged: (input) {
-                    setState(() => _age = input as int);
+                    setState(() => _age = input);
                   },
                   decoration: InputDecoration(labelText: 'Yaş'),
                 ),
@@ -86,7 +87,6 @@ class _RegisterState extends State<Register> {
                       print('error');
                     } else {
                       print('sig in');
-                      print(result.uid);
                     }
                   },
                   child: Text('GİRİŞ'),

@@ -58,7 +58,6 @@ class _LoginState extends State<Login> {
                     }
                     else {
                       print('sig in');
-                      print(result.uid);
                     }
                   },
                   child: Text('GİRİŞ'),

@@ -1,6 +1,6 @@
-import 'package:belediyeler/HomePage/profilepage.dart';
 import 'package:belediyeler/firebase/authentication.dart';
 import 'package:belediyeler/firebase/firebase.dart';
+import 'package:belediyeler/firebase/userinfo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +35,7 @@ class _homepageState extends State<homepage> {
       'like',
       style: optionStyle,
     ),
-    ProfilPage(),
+    userList(),
   ];
 
   void _onItemTapped(int index) {
