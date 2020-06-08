@@ -1,5 +1,4 @@
-import 'package:belediyeler/auth/register.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:belediyeler/firebase/authentication.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -8,8 +7,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String _email, _password;
+  String _email = '', _password = '';
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,9 @@ class _LoginState extends State<Login> {
                       return 'Email bölümü boş bırakılamaz.';
                     }
                   },
-                  onSaved: (input) => _email = input,
+                  onChanged: (input) {
+                    setState(() => _email = input);
+                  },
                   decoration: InputDecoration(labelText: 'Email'),
                 ),
                 TextFormField(
@@ -40,12 +42,25 @@ class _LoginState extends State<Login> {
                       return 'Şifre bölümü boş bırakılamaz.';
                     }
                   },
-                  onSaved: (input) => _password = input,
+                  onChanged: (input) {
+                    setState(() => _password = input);
+                  },
                   decoration: InputDecoration(labelText: 'Şifre'),
                   obscureText: true,
                 ),
                 RaisedButton(
-                  onPressed: signIn,
+                  onPressed: () async {
+                    dynamic result = await _authService
+                        .loginWithEmailandPassword(
+                        _email, _password);
+                    if (result == null) {
+                      print('error');
+                    }
+                    else {
+                      print('sig in');
+                      print(result.uid);
+                    }
+                  },
                   child: Text('GİRİŞ'),
                 )
               ],
@@ -54,20 +69,5 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
-  }
-
-  Future<void> signIn() async {
-    final formState = _formkey.currentState;
-    if (formState.validate()) {
-      formState.save();
-      try {
-        await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: _email, password: _password);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Register()));
-      } catch (e) {
-        print(e);
-      }
-    }
   }
 }

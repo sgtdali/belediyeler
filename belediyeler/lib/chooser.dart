@@ -1,10 +1,19 @@
+import 'package:belediyeler/HomePage/mainpage.dart';
 import 'package:belediyeler/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Wrapper extends StatelessWidget {
+import 'firebase/users.dart';
+
+class Chooser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
 
-    return Login();
+    if (user == null) {
+      return Login();
+    } else {
+      return homepage();
+    }
   }
 }
