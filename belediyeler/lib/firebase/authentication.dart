@@ -6,12 +6,12 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // create user object
-  User _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? User(uid: user.uid) : null;
+  Users _userFromFirebaseUser(FirebaseUser user) {
+    return user != null ? Users(uid: user.uid) : null;
   }
 
   // Auth change
-  Stream<User> get user {
+  Stream<Users> get user {
     return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
   }
 
@@ -53,10 +53,5 @@ class AuthService {
       print(e.toString());
       return null;
     }
-  }
-
-  Future<String> getUid() async {
-    return (await _auth.currentUser()).uid;
-    ;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:belediyeler/chooser.dart';
 import 'package:belediyeler/firebase/authentication.dart';
 import 'package:flutter/material.dart';
 
@@ -51,13 +52,15 @@ class _LoginState extends State<Login> {
                 RaisedButton(
                   onPressed: () async {
                     dynamic result = await _authService
-                        .loginWithEmailandPassword(
-                        _email, _password);
+                        .loginWithEmailandPassword(_email, _password);
+
                     if (result == null) {
                       print('error');
-                    }
-                    else {
+                    } else {
                       print('sig in');
+                      Navigator.of(context).pushReplacement(
+                          new MaterialPageRoute(
+                              builder: (BuildContext context) => Chooser()));
                     }
                   },
                   child: Text('GİRİŞ'),

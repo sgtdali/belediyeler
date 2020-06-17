@@ -1,7 +1,7 @@
 import 'package:belediyeler/firebase/authentication.dart';
 import 'package:belediyeler/firebase/firebase.dart';
+import 'package:belediyeler/firebase/userindinfo.dart';
 import 'package:belediyeler/firebase/userinfo.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,7 +46,7 @@ class _homepageState extends State<homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot>.value(
+    return StreamProvider<List<Userind>>.value(
       value: DatabaseService().Users,
       child: Scaffold(
         appBar: AppBar(

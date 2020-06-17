@@ -1,3 +1,4 @@
+import 'package:belediyeler/chooser.dart';
 import 'package:belediyeler/firebase/authentication.dart';
 import 'package:flutter/material.dart';
 
@@ -81,12 +82,15 @@ class _RegisterState extends State<Register> {
                 RaisedButton(
                   onPressed: () async {
                     dynamic result =
-                        await _authService.registerWithEmailandPassword(
-                            _email, _password, _name, _surname, _age);
+                    await _authService.registerWithEmailandPassword(
+                        _email, _password, _name, _surname, _age);
                     if (result == null) {
                       print('error');
                     } else {
                       print('sig in');
+                      Navigator.of(context).pushReplacement(
+                          new MaterialPageRoute(
+                              builder: (BuildContext context) => Chooser()));
                     }
                   },
                   child: Text('GİRİŞ'),
