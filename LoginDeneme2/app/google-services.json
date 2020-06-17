@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "787663196776",
+    "firebase_url": "https://logindeneme2-eb3fb.firebaseio.com",
+    "project_id": "logindeneme2-eb3fb",
+    "storage_bucket": "logindeneme2-eb3fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787663196776:android:5324664e9b39dcc1eaa1dd",
+        "android_client_info": {
+          "package_name": "com.example.logindeneme2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787663196776-u7hs7qlu6tgl6luub9q7gg515m4emmnq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.logindeneme2",
+            "certificate_hash": "8e845a7d0037717f664d4725c6600823ca2b4a7d"
+          }
+        },
+        {
+          "client_id": "787663196776-em8i3dj91f2a3vs57ah40dlfga3ji44s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYdFBTflCg-oH-SW7xcYFhLixVfPx5VkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787663196776-em8i3dj91f2a3vs57ah40dlfga3ji44s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

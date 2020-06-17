@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="tay.fun.outsmartroulette" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon12"
+        android:label="Outsmart Roulette"
+
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity android:name="tay.fun.outsmartroulette.info" />
+        <activity android:name="tay.fun.outsmartroulette.Main2Activity" />
+        <activity android:name="tay.fun.outsmartroulette.MainActivity" />
+        <activity android:name="tay.fun.outsmartroulette.Main3Activity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
