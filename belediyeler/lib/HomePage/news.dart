@@ -1,5 +1,6 @@
 import 'package:belediyeler/firebase/news.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class News extends StatefulWidget {
@@ -62,9 +63,25 @@ class _NewsState extends State<News> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(haberic),
-            Image.network(
-              URL,
-              fit: BoxFit.cover,
+            Row(
+              children: <Widget>[
+                Image.network(
+                  URL,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Flexible(
+                  child: FractionallySizedBox(
+                    child: Container(
+                        child: Text(
+                      'sadffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+                      overflow: TextOverflow.ellipsis,
+                    )),
+                  ),
+                )
+              ],
             ),
           ],
         ),
