@@ -1,3 +1,4 @@
+import 'package:belediyeler/HomePage/news.dart';
 import 'package:belediyeler/firebase/authentication.dart';
 import 'package:belediyeler/firebase/firebase.dart';
 import 'package:belediyeler/firebase/userindinfo.dart';
@@ -14,7 +15,7 @@ class _homepageState extends State<homepage> {
   int _selectedIndex = 0;
   static AuthService _authService = AuthService();
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetoptions = [
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -31,10 +32,7 @@ class _homepageState extends State<homepage> {
         ),
       ],
     ),
-    Text(
-      'like',
-      style: optionStyle,
-    ),
+    News(),
     userList(),
   ];
 
