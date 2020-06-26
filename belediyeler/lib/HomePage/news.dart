@@ -60,28 +60,33 @@ class _NewsState extends State<News> {
       child: Container(
         padding: EdgeInsets.all(15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(haberic),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text('İBB'),
+                Text('26.06.2020'),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.network(
                   URL,
                   fit: BoxFit.cover,
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                Flexible(
-                  child: FractionallySizedBox(
-                    child: Container(
-                        child: Text(
-                      'sadffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-                      overflow: TextOverflow.ellipsis,
-                    )),
-                  ),
-                )
               ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              haberic,
+              textAlign: TextAlign.center,
             ),
           ],
         ),
