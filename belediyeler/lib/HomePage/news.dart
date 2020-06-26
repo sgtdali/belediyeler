@@ -87,6 +87,7 @@ class _NewsState extends State<News> {
             Text(
               haberic,
               textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
         ),
