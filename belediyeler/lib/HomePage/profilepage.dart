@@ -10,7 +10,9 @@ class _ProfilPageState extends State<ProfilPage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          
+        ],
       ),
     );
   }

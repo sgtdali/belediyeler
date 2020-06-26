@@ -1,3 +1,5 @@
+import 'package:belediyeler/HomePage/NewsDetail.dart';
+import 'package:belediyeler/auth/loginregister.dart';
 import 'package:belediyeler/firebase/news.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,8 +31,10 @@ class _NewsState extends State<News> {
             .child(i.toString());
         postref2.once().then((DataSnapshot snap) {
           News1 news1 = new News1(
-            individiualKey['habericerik'],
+            individiualKey['haberbaslik'],
             individiualKey['url'],
+            individiualKey['habericerik1'],
+            individiualKey['habericerik2'],
           );
           postList.add(news1);
 
@@ -46,52 +50,60 @@ class _NewsState extends State<News> {
     return Scaffold(
       body: ListView.builder(
         itemBuilder: (_, index) {
-          return newsUI(postList[index].habericerik, postList[index].url);
+          return newsUI(postList[index].haberbaslik, postList[index].url, postList[index].habericerik1, postList[index].habericerik2);
         },
         itemCount: postList.length,
       ),
     );
   }
 
-  Widget newsUI(String haberic, String URL) {
-    return Card(
-      elevation: 10,
-      margin: EdgeInsets.all(15),
-      child: Container(
-        padding: EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text('İBB'),
-                Text('26.06.2020'),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.network(
-                  URL,
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              haberic,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
+  Widget newsUI(String haberbaslik, String URL, String habericerik1, String habericerik2) {
+    return GestureDetector(
+      child: Card(
+        elevation: 10,
+        margin: EdgeInsets.all(15),
+        child: Container(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text('İBB'),
+                  Text('26.06.2020'),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.network(
+                    URL,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                haberbaslik,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => NewsDetail(URL, haberbaslik, habericerik1, habericerik2)));
+      },
     );
   }
+
 }
+
+
