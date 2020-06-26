@@ -59,40 +59,27 @@ class _NewsState extends State<News> {
 
   Widget newsUI(String haberbaslik, String URL, String habericerik1, String habericerik2) {
     return GestureDetector(
-      child: Card(
-        elevation: 10,
-        margin: EdgeInsets.all(15),
-        child: Container(
-          padding: EdgeInsets.all(15),
+      child: SingleChildScrollView(
+        child: Card(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('İBB'),
-                  Text('26.06.2020'),
+                  Text("İBB"),
+                  Text("26.06.2020"),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.network(
-                    URL,
-                    fit: BoxFit.cover,
+              Container(
+                margin: EdgeInsets.all(10),
+               // height: 100,
+                child: ListTile(
+                  leading: Image.network(URL),dense: true,
+                  title: Text(haberbaslik,
+                  overflow: TextOverflow.fade,
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                haberbaslik,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                //  subtitle: Text(habericerik1),
+                ),
               ),
             ],
           ),
@@ -105,5 +92,45 @@ class _NewsState extends State<News> {
   }
 
 }
+/*
 
-
+Card(
+elevation: 10,
+margin: EdgeInsets.all(15),
+child: Container(
+padding: EdgeInsets.all(15),
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.center,
+children: <Widget>[
+Row(
+mainAxisAlignment: MainAxisAlignment.spaceBetween,
+children: <Widget>[
+Text('İBB'),
+Text('26.06.2020'),
+],
+),
+SizedBox(
+height: 10,
+),
+Row(
+mainAxisAlignment: MainAxisAlignment.center,
+children: <Widget>[
+Image.network(
+URL,
+fit: BoxFit.cover,
+),
+],
+),
+SizedBox(
+height: 10,
+),
+Text(
+haberbaslik,
+textAlign: TextAlign.center,
+style: TextStyle(fontWeight: FontWeight.bold),
+),
+],
+),
+),
+),
+*/
