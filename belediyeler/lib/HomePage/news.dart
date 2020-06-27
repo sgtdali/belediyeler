@@ -1,6 +1,6 @@
 import 'package:belediyeler/HomePage/NewsDetail.dart';
-import 'package:belediyeler/auth/loginregister.dart';
 import 'package:belediyeler/firebase/news.dart';
+import 'package:belediyeler/shared/spinner.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +12,26 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
   List<News1> postList = [];
+  int i = 1;
+  int c = 6;
+  bool loading = true;
+  ScrollController _scrollController = new ScrollController();
 
   @override
   void initState() {
-    int i = 1;
-    // TODO: implement initState
+    //int i = 1;
     super.initState();
-    DatabaseReference postref =
+    getData5();
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        getData(c);
+        c = c + 1;
+      }
+    });
+
+    /*DatabaseReference postref =
         FirebaseDatabase.instance.reference().child('İBB').child('haberler');
     postref.once().then((DataSnapshot snap) {
       var KEYS = snap.value;
@@ -42,19 +55,29 @@ class _NewsState extends State<News> {
         });
       }
       setState(() {});
-    });
+    });*/
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemBuilder: (_, index) {
-          return newsUI(postList[index].haberbaslik, postList[index].url, postList[index].habericerik1, postList[index].habericerik2);
-        },
-        itemCount: postList.length,
-      ),
-    );
+    return loading
+        ? spinner()
+        : Scaffold(
+            body: ListView.builder(
+              controller: _scrollController,
+              itemBuilder: (_, index) {
+                return newsUI(postList[index].haberbaslik, postList[index].url,
+                    postList[index].habericerik1, postList[index].habericerik2);
+              },
+              itemCount: postList.length,
+            ),
+          );
   }
 
   Widget newsUI(String haberbaslik, String URL, String habericerik1, String habericerik2) {
@@ -64,6 +87,7 @@ class _NewsState extends State<News> {
           child: Column(
             children: <Widget>[
               Row(
+
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("İBB"),
@@ -72,65 +96,56 @@ class _NewsState extends State<News> {
               ),
               Container(
                 margin: EdgeInsets.all(10),
-               // height: 100,
-                child: ListTile(
-                  leading: Image.network(URL),dense: true,
-                  title: Text(haberbaslik,
-                  overflow: TextOverflow.fade,
+                height: 100,
+                child: Center(
+                  child: ListTile(
+
+                    leading: SizedBox(
+
+                        child: Image.network(URL, fit: BoxFit.fill,)),
+                    title: Text(haberbaslik,
+                      overflow: TextOverflow.fade,
+                    ),
+                    //  subtitle: Text(habericerik1),
                   ),
-                //  subtitle: Text(habericerik1),
                 ),
               ),
             ],
           ),
         ),
       ),
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => NewsDetail(URL, haberbaslik, habericerik1, habericerik2)));
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>
+            NewsDetail(URL, haberbaslik, habericerik1, habericerik2)));
       },
     );
   }
 
-}
-/*
+  getData(int b) {
+    DatabaseReference postref2 = FirebaseDatabase.instance
+        .reference()
+        .child('İBB')
+        .child('haberler')
+        .child(b.toString());
+    postref2.once().then((DataSnapshot snap) {
+      var DATA = snap.value;
+      News1 news1 = new News1(
+        DATA['haberbaslik'],
+        DATA['url'],
+        DATA['habericerik1'],
+        DATA['habericerik2'],
+      );
+      setState(() {
+        postList.add(news1);
+        loading = false;
+      });
+    });
+    return b;
+  }
 
-Card(
-elevation: 10,
-margin: EdgeInsets.all(15),
-child: Container(
-padding: EdgeInsets.all(15),
-child: Column(
-crossAxisAlignment: CrossAxisAlignment.center,
-children: <Widget>[
-Row(
-mainAxisAlignment: MainAxisAlignment.spaceBetween,
-children: <Widget>[
-Text('İBB'),
-Text('26.06.2020'),
-],
-),
-SizedBox(
-height: 10,
-),
-Row(
-mainAxisAlignment: MainAxisAlignment.center,
-children: <Widget>[
-Image.network(
-URL,
-fit: BoxFit.cover,
-),
-],
-),
-SizedBox(
-height: 10,
-),
-Text(
-haberbaslik,
-textAlign: TextAlign.center,
-style: TextStyle(fontWeight: FontWeight.bold),
-),
-],
-),
-),
-),
-*/
+  getData5() {
+    for (int b = i; b < 5; b++) {
+      getData(b);
+    }
+  }
+}
