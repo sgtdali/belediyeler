@@ -12,6 +12,7 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
   List<News1> postList = [];
+  String post2;
   int i = 1;
   int c = 6;
   bool loading = true;
@@ -72,15 +73,20 @@ class _NewsState extends State<News> {
             body: ListView.builder(
               controller: _scrollController,
               itemBuilder: (_, index) {
-                return newsUI(postList[index].haberbaslik, postList[index].url,
-                    postList[index].habericerik1, postList[index].habericerik2);
+                return newsUI(
+                    postList[index].haberbaslik,
+                    postList[index].url,
+                    postList[index].habericerik1,
+                    postList[index].habericerik2,
+                    index);
               },
               itemCount: postList.length,
             ),
           );
   }
 
-  Widget newsUI(String haberbaslik, String URL, String habericerik1, String habericerik2) {
+  Widget newsUI(String haberbaslik, String URL, String habericerik1,
+      String habericerik2, int index) {
     return GestureDetector(
       child: SingleChildScrollView(
         child: Card(
@@ -116,7 +122,7 @@ class _NewsState extends State<News> {
       ),
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) =>
-            NewsDetail(URL, haberbaslik, habericerik1, habericerik2)));
+            NewsDetail(URL, haberbaslik, habericerik1, habericerik2, index)));
       },
     );
   }
@@ -129,14 +135,19 @@ class _NewsState extends State<News> {
         .child(b.toString());
     postref2.once().then((DataSnapshot snap) {
       var DATA = snap.value;
+
       News1 news1 = new News1(
         DATA['haberbaslik'],
         DATA['url'],
         DATA['habericerik1'],
         DATA['habericerik2'],
       );
+
+      post2 = DATA['haberbaslik'];
+
       setState(() {
         postList.add(news1);
+
         loading = false;
       });
     });
