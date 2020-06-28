@@ -86,30 +86,44 @@ class _NewsState extends State<News> {
     return GestureDetector(
       child: SingleChildScrollView(
         child: Card(
+          color: Colors.blueGrey.shade100,
+          elevation: 100,
           child: Column(
             children: <Widget>[
+              SizedBox(
+                height: 7,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("İBB"),
-                  Text("26.06.2020"),
+                  Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Text("İBB"),
+                  ),
+                  Container(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Text("26.06.2020")),
                 ],
               ),
-              Container(
-                margin: EdgeInsets.all(10),
-                height: 100,
-                child: Center(
-                  child: ListTile(
-
-                    leading: SizedBox(
-
-                        child: Image.network(URL, fit: BoxFit.fill,)),
-                    title: Text(haberbaslik,
-                      overflow: TextOverflow.fade,
-                    ),
-                    //  subtitle: Text(habericerik1),
+              Row(
+                children: <Widget>[
+                  Container(
+                    height: 100,
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                    child: Image.network(URL),
                   ),
-                ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: Text(haberbaslik),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 7,
               ),
             ],
           ),

@@ -2,6 +2,7 @@ import 'package:belediyeler/HomePage/news1.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
 class NewsDetail extends StatelessWidget {
 
   String URL;
@@ -15,7 +16,7 @@ class NewsDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("deneme"),
+        title: Text(haberbaslik),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
