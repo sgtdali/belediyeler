@@ -13,9 +13,10 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
   int _selectedIndex = 0;
+  String _title = "Home";
   static AuthService _authService = AuthService();
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetoptions = [
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,9 +37,30 @@ class _homepageState extends State<homepage> {
     userList(),
   ];
 
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      switch (index) {
+        case 0:
+          {
+            _title = 'Home';
+          }
+          break;
+        case 1:
+          {
+            _title = 'Likes';
+          }
+          break;
+        case 2:
+          {
+            _title = 'Profile';
+          }
+          break;
+      }
+      if (_title == null) {
+        _title = "home";
+      }
     });
   }
 
@@ -48,7 +70,7 @@ class _homepageState extends State<homepage> {
       value: DatabaseService().Users,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('home'),
+          title: Text("$_title"),
         ),
         body: Center(
           child: _widgetoptions.elementAt(_selectedIndex),
