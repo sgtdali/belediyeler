@@ -22,8 +22,10 @@ class _NewsDetail1State extends State<NewsDetail1> {
   @override
   void initState() {
     // TODO: implement initState
+    Liste = [];
     super.initState();
     getData(index + 1);
+    print(index);
   }
 
   @override
@@ -69,7 +71,6 @@ class _NewsDetail1State extends State<NewsDetail1> {
 
         setState(() {
           Liste.add(Text1(haber1));
-          print(Liste.length);
         });
       }
     });

@@ -6,12 +6,10 @@ class NewsDetail extends StatelessWidget {
 
   String URL;
   String haberbaslik;
-  String habericerik1;
-  String habericerik2;
+
   int index;
 
-  NewsDetail(this.URL, this.haberbaslik, this.habericerik1, this.habericerik2,
-      this.index);
+  NewsDetail(this.URL, this.haberbaslik, this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +20,7 @@ class NewsDetail extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -48,6 +47,9 @@ class NewsDetail extends StatelessWidget {
             haberbaslik,
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 10,
           ),
           NewsDetail1(index),
         ],

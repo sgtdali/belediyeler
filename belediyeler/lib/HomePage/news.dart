@@ -14,13 +14,14 @@ class _NewsState extends State<News> {
   List<News1> postList = [];
   String post2;
   int i = 1;
-  int c = 6;
+  int c = 5;
   bool loading = true;
   ScrollController _scrollController = new ScrollController();
 
   @override
   void initState() {
     //int i = 1;
+    postList = [];
     super.initState();
     getData5();
 
@@ -74,26 +75,20 @@ class _NewsState extends State<News> {
               controller: _scrollController,
               itemBuilder: (_, index) {
                 return newsUI(
-                    postList[index].haberbaslik,
-                    postList[index].url,
-                    postList[index].habericerik1,
-                    postList[index].habericerik2,
-                    index);
+                    postList[index].haberbaslik, postList[index].url, index);
               },
               itemCount: postList.length,
             ),
           );
   }
 
-  Widget newsUI(String haberbaslik, String URL, String habericerik1,
-      String habericerik2, int index) {
+  Widget newsUI(String haberbaslik, String URL, int index) {
     return GestureDetector(
       child: SingleChildScrollView(
         child: Card(
           child: Column(
             children: <Widget>[
               Row(
-
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("İBB"),
@@ -122,7 +117,7 @@ class _NewsState extends State<News> {
       ),
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) =>
-            NewsDetail(URL, haberbaslik, habericerik1, habericerik2, index)));
+            NewsDetail(URL, haberbaslik, index)));
       },
     );
   }
