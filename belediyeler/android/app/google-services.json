@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "524261676512",
-    "firebase_url": "https://belediyeler-9a30d.firebaseio.com",
-    "project_id": "belediyeler-9a30d",
-    "storage_bucket": "belediyeler-9a30d.appspot.com"
+    "project_number": "990595860429",
+    "firebase_url": "https://belediyeler-942d2.firebaseio.com",
+    "project_id": "belediyeler-942d2",
+    "storage_bucket": "belediyeler-942d2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:524261676512:android:01403b991fae6cfacb8785",
+        "mobilesdk_app_id": "1:990595860429:android:3f1ec91d1bfabff63ca684",
         "android_client_info": {
-          "package_name": "com.tyfnbtu.belediyeler"
+          "package_name": "com.tayfnbtu.belediyeler"
         }
       },
       "oauth_client": [
         {
-          "client_id": "524261676512-cgil1eb0t7ne9gge2p9hgq11irhn9pq0.apps.googleusercontent.com",
+          "client_id": "990595860429-ulqs2ooufic2fr7gpd7tc4knms7tjcqt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAVQXVr3zzwMVC0ybYEoPT3fGagWi6mg_8"
+          "current_key": "AIzaSyDeph9ejKBaR9eqfdcWaKKKlIu2Gq4yGLk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "524261676512-cgil1eb0t7ne9gge2p9hgq11irhn9pq0.apps.googleusercontent.com",
+              "client_id": "990595860429-ulqs2ooufic2fr7gpd7tc4knms7tjcqt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -32,32 +32,6 @@ class _NewsState extends State<News> {
         c = c + 1;
       }
     });
-
-    /*DatabaseReference postref =
-        FirebaseDatabase.instance.reference().child('İBB').child('haberler');
-    postref.once().then((DataSnapshot snap) {
-      var KEYS = snap.value;
-
-      for (var individiualKey in KEYS) {
-        DatabaseReference postref2 = FirebaseDatabase.instance
-            .reference()
-            .child('İBB')
-            .child('haberler')
-            .child(i.toString());
-        postref2.once().then((DataSnapshot snap) {
-          News1 news1 = new News1(
-            individiualKey['haberbaslik'],
-            individiualKey['url'],
-            individiualKey['habericerik1'],
-            individiualKey['habericerik2'],
-          );
-          postList.add(news1);
-
-          i = i + 1;
-        });
-      }
-      setState(() {});
-    });*/
   }
 
   @override
@@ -71,15 +45,15 @@ class _NewsState extends State<News> {
     return loading
         ? spinner()
         : Scaffold(
-            body: ListView.builder(
-              controller: _scrollController,
-              itemBuilder: (_, index) {
-                return newsUI(
-                    postList[index].haberbaslik, postList[index].url, index);
-              },
-              itemCount: postList.length,
-            ),
-          );
+      body: ListView.builder(
+        controller: _scrollController,
+        itemBuilder: (_, index) {
+          return newsUI(
+              postList[index].haberbaslik, postList[index].url, index);
+        },
+        itemCount: postList.length,
+      ),
+    );
   }
 
   Widget newsUI(String haberbaslik, String URL, int index) {

@@ -70,7 +70,9 @@ class _homepageState extends State<homepage> {
       value: DatabaseService().Users,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("$_title"),
+          title: Text("$_title",
+          textAlign: TextAlign.center,
+          ),
         ),
         body: Center(
           child: _widgetoptions.elementAt(_selectedIndex),
