@@ -12,6 +12,7 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
   List<News1> postList = [];
+  List tarih = [];
   String post2;
   int i = 1;
   int c = 5;
@@ -22,6 +23,7 @@ class _NewsState extends State<News> {
   void initState() {
     //int i = 1;
     postList = [];
+
     super.initState();
     getData5();
 
@@ -125,9 +127,18 @@ class _NewsState extends State<News> {
         DATA['habericerik1'],
         DATA['habericerik2'],
       );
+      tarih = [
+        {'isim': 'İBB1', 'tarih': 100},
+        {'isim': 'İBB2', 'tarih': 99},
+        {'isim': 'İBB3', 'tarih': 200}
+      ];
 
-      post2 = DATA['haberbaslik'];
-
+      tarih.sort((a, b) {
+        var adate = a['tarih']; //before -> var adate = a.expiry;
+        var bdate = b['tarih']; //var bdate = b.expiry;
+        return bdate.compareTo(adate);
+      });
+      print(tarih);
       setState(() {
         postList.add(news1);
 

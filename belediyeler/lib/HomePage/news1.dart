@@ -25,7 +25,6 @@ class _NewsDetail1State extends State<NewsDetail1> {
     Liste = [];
     super.initState();
     getData(index + 1);
-    print(index);
   }
 
   @override
@@ -46,12 +45,11 @@ class _NewsDetail1State extends State<NewsDetail1> {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: 50,
+            height: 20,
           ),
-          Text(Haber),
-          SizedBox(
-            height: 10,
-          ),
+          Text(Haber, style: TextStyle(
+              fontWeight: fw(Haber.length), fontFamily: 'Roboto'),),
+
         ],
       ),
     );
@@ -65,8 +63,8 @@ class _NewsDetail1State extends State<NewsDetail1> {
         .child(b.toString());
     postref2.once().then((DataSnapshot snap) {
       var DATA = snap.value;
-
-      for (int i = 1; i < 3; i++) {
+      var iceriksayisi = DATA['iceriksayisi'];
+      for (int i = 1; i < iceriksayisi + 1; i++) {
         haber1 = DATA['habericerik' + i.toString()];
 
         setState(() {
@@ -75,5 +73,11 @@ class _NewsDetail1State extends State<NewsDetail1> {
       }
     });
     return b;
+  }
+
+  FontWeight fw(int number) {
+    if (number < 100) {
+      return FontWeight.w700;
+    }
   }
 }
