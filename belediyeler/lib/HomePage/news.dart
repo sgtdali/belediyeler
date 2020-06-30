@@ -14,6 +14,8 @@ class _NewsState extends State<News> {
   List<News1> postList = [];
   List tarih = [];
   String post2;
+  var aaa;
+  var bbb;
   int i = 1;
   int c = 5;
   bool loading = true;
@@ -23,14 +25,14 @@ class _NewsState extends State<News> {
   void initState() {
     //int i = 1;
     postList = [];
-
+    tarih = [];
     super.initState();
-    getData5();
+    getDatatarih();
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        getData(c);
+        getData(tarih[c]['name']);
         c = c + 1;
       }
     });
@@ -51,14 +53,17 @@ class _NewsState extends State<News> {
         controller: _scrollController,
         itemBuilder: (_, index) {
           return newsUI(
-              postList[index].haberbaslik, postList[index].url, index);
+              postList[index].haberbaslik, postList[index].url,
+              postList[index].belediye, postList[index].tarih,
+              tarih[index]['name']);
         },
         itemCount: postList.length,
       ),
     );
   }
 
-  Widget newsUI(String haberbaslik, String URL, int index) {
+  Widget newsUI(String haberbaslik, String URL, String belediye, String tarih,
+      String index) {
     return GestureDetector(
       child: SingleChildScrollView(
         child: Card(
@@ -74,11 +79,11 @@ class _NewsState extends State<News> {
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.only(left: 10),
-                    child: Text("İBB"),
+                    child: Text(belediye),
                   ),
                   Container(
                       padding: EdgeInsets.only(right: 10),
-                      child: Text("26.06.2020")),
+                      child: Text(tarih)),
                 ],
               ),
               Row(
@@ -107,50 +112,70 @@ class _NewsState extends State<News> {
       ),
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) =>
-            NewsDetail(URL, haberbaslik, index)));
+            NewsDetail(URL, haberbaslik, belediye, tarih, index)));
       },
     );
   }
 
-  getData(int b) {
+  getDatatarih() async {
+    DatabaseReference postref2 = await FirebaseDatabase.instance
+        .reference()
+        .child('İBB')
+        .child('habertarihleri');
+    postref2.once().then((DataSnapshot snap) {
+      var DATA = snap.value;
+
+      for (var dat in DATA) {
+        aaa = dat['name'];
+        bbb = dat['tarih'];
+        tarih.add({'name': aaa, 'tarih': bbb});
+      }
+
+      setState(() {
+        tarih.sort((a, b) {
+          var adate = a['tarih']; //before -> var adate = a.expiry;
+          var bdate = b['tarih']; //var bdate = b.expiry;
+          return bdate.compareTo(adate);
+        });
+      });
+      for (int b = 0; b < 5; b++) {
+        String name = tarih[b]['name'];
+        getData(name);
+      }
+    });
+  }
+
+  getData(String b) {
     DatabaseReference postref2 = FirebaseDatabase.instance
         .reference()
         .child('İBB')
         .child('haberler')
-        .child(b.toString());
+        .child(b);
     postref2.once().then((DataSnapshot snap) {
       var DATA = snap.value;
 
       News1 news1 = new News1(
         DATA['haberbaslik'],
         DATA['url'],
-        DATA['habericerik1'],
-        DATA['habericerik2'],
+        DATA['belediye'],
+        DATA['tarih'],
       );
-      tarih = [
-        {'isim': 'İBB1', 'tarih': 100},
-        {'isim': 'İBB2', 'tarih': 99},
-        {'isim': 'İBB3', 'tarih': 200}
-      ];
 
-      tarih.sort((a, b) {
-        var adate = a['tarih']; //before -> var adate = a.expiry;
-        var bdate = b['tarih']; //var bdate = b.expiry;
-        return bdate.compareTo(adate);
-      });
-      print(tarih);
+
       setState(() {
         postList.add(news1);
 
         loading = false;
       });
     });
-    return b;
+    return;
   }
 
-  getData5() {
-    for (int b = i; b < 5; b++) {
-      getData(b);
+/*getData5() {
+    for (int b = 0; b < 5; b++) {
+
+      String name=tarih[b]['name'];
+      getData(name);
     }
-  }
+  }*/
 }

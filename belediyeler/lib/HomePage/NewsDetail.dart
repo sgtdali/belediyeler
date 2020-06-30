@@ -7,10 +7,12 @@ class NewsDetail extends StatelessWidget {
 
   String URL;
   String haberbaslik;
+  String belediye;
+  String tarih;
 
-  int index;
+  String index;
 
-  NewsDetail(this.URL, this.haberbaslik, this.index);
+  NewsDetail(this.URL, this.haberbaslik, this.belediye, this.tarih, this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +27,8 @@ class NewsDetail extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text('İBB'),
-              Text('26.06.2020'),
+              Text(belediye),
+              Text(tarih),
             ],
           ),
           SizedBox(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class NewsDetail1 extends StatefulWidget {
   @override
-  int index;
+  String index;
 
   NewsDetail1(this.index);
 
@@ -12,7 +12,7 @@ class NewsDetail1 extends StatefulWidget {
 }
 
 class _NewsDetail1State extends State<NewsDetail1> {
-  int index;
+  String index;
 
   _NewsDetail1State(this.index);
 
@@ -24,7 +24,7 @@ class _NewsDetail1State extends State<NewsDetail1> {
     // TODO: implement initState
     Liste = [];
     super.initState();
-    getData(index + 1);
+    getData(index);
   }
 
   @override
@@ -55,12 +55,12 @@ class _NewsDetail1State extends State<NewsDetail1> {
     );
   }
 
-  getData(int b) {
+  getData(String b) {
     DatabaseReference postref2 = FirebaseDatabase.instance
         .reference()
         .child('İBB')
         .child('haberler')
-        .child(b.toString());
+        .child(b);
     postref2.once().then((DataSnapshot snap) {
       var DATA = snap.value;
       var iceriksayisi = DATA['iceriksayisi'];
