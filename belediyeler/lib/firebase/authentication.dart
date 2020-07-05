@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:belediyeler/firebase/firebase.dart';
 import 'package:belediyeler/firebase/users.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
+  StreamController streamController = new StreamController<String>();
+  static var asdfg;
+  bool loading;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // create user object

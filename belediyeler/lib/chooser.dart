@@ -13,7 +13,6 @@ class Chooser extends StatelessWidget {
     if (user == null) {
       return LoginRegister();
     } else {
-      print(user.uid);
       return homepage();
     }
   }

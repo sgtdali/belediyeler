@@ -1,8 +1,10 @@
+import 'package:belediyeler/HomePage/home.dart';
 import 'package:belediyeler/HomePage/news.dart';
-import 'package:belediyeler/firebase/authentication.dart';
 import 'package:belediyeler/firebase/firebase.dart';
+import 'package:belediyeler/firebase/realtimefirebase.dart';
 import 'package:belediyeler/firebase/userindinfo.dart';
 import 'package:belediyeler/firebase/userinfo.dart';
+import 'package:belediyeler/shared/spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,27 +14,33 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+  RealTimeDatabase realTimeDatabase = new RealTimeDatabase();
+  bool loading = true;
+
+  void initState() {
+    super.initState();
+
+    asyinit().whenComplete(() {
+      setState(() {
+        loading = false;
+      });
+      print("success");
+    }).catchError((error, stackTrace) {
+      print("outer: $error");
+    });
+  }
+
+  Future<void> asyinit() async {
+    await realTimeDatabase.dataformfirebase();
+  }
+
   int _selectedIndex = 0;
   String _title = "Home";
-  static AuthService _authService = AuthService();
+
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetoptions = [
-    Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        RaisedButton(
-          onPressed: () async {
-            dynamic result = await _authService.signOut();
-          },
-          child: Text('Çıkış'),
-        ),
-        Text(
-          'Home',
-          style: optionStyle,
-        ),
-      ],
-    ),
+    HomePage(),
     News(),
     userList(),
   ];
@@ -66,12 +74,14 @@ class _homepageState extends State<homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<Userind>>.value(
+    return loading
+        ? spinner()
+        : StreamProvider<List<Userind>>.value(
       value: DatabaseService().Users,
       child: Scaffold(
         appBar: AppBar(
           title: Text("$_title",
-          textAlign: TextAlign.center,
+            textAlign: TextAlign.center,
           ),
         ),
         body: Center(
