@@ -1,5 +1,6 @@
 import 'package:belediyeler/HomePage/NewsDetail.dart';
 import 'package:belediyeler/firebase/news.dart';
+import 'package:belediyeler/firebase/realtimefirebase.dart';
 import 'package:belediyeler/shared/spinner.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,9 +54,11 @@ class _NewsState extends State<News> {
         controller: _scrollController,
         itemBuilder: (_, index) {
           return newsUI(
-              postList[index].haberbaslik, postList[index].url,
-              postList[index].belediye, postList[index].tarih,
-              tarih[index]['name']);
+                    RealTimeDatabase.tarih[index]['haberbaslik'],
+                    RealTimeDatabase.tarih[index]['url'],
+                    RealTimeDatabase.tarih[index]['belediye'],
+                    RealTimeDatabase.tarih[index]['tarih'],
+                    tarih[index]['name']);
         },
         itemCount: postList.length,
       ),
