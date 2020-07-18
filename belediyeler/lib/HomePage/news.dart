@@ -77,11 +77,13 @@ class _NewsState extends State<News> {
   Widget newsUI(String haberbaslik, String URL, String belediye, String tarih,
       int index, BuildContext context) {
     var follows = Provider.of<DocumentSnapshot>(context);
+    var aaa = 0;
     final user = Provider.of<Users>(context);
     List asdf = follows['follow'];
     for (var i = 0; i < asdf.length; i++) {
       if (belediye == asdf[i]) {
         icon = Icons.favorite;
+        aaa = aaa + 1;
         break;
       } else {
         icon = Icons.favorite_border;
@@ -165,17 +167,18 @@ class _NewsState extends State<News> {
 
                           onPressed: () {
                             setState(() {
-                              if (icon == Icons.favorite_border) {
+                              if (aaa == 0) {
                                 DatabaseService _databaseService =
                                     new DatabaseService(uid: user.uid);
                                 dynamic result =
                                     _databaseService.updateUserFollow(belediye);
-                                print("333");
+                                print("true");
                               } else {
                                 DatabaseService _databaseService =
                                     new DatabaseService(uid: user.uid);
                                 dynamic result =
                                     _databaseService.deleteUserFollow(belediye);
+                                print('else');
                               }
                             });
                           },
