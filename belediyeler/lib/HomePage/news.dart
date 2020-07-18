@@ -80,16 +80,19 @@ class _NewsState extends State<News> {
     var aaa = 0;
     final user = Provider.of<Users>(context);
     List asdf = follows['follow'];
-    for (var i = 0; i < asdf.length; i++) {
-      if (belediye == asdf[i]) {
-        icon = Icons.favorite;
-        aaa = aaa + 1;
-        break;
-      } else {
-        icon = Icons.favorite_border;
+    if (asdf.length == 0) {
+      icon = Icons.favorite_border;
+    } else {
+      for (var i = 0; i < asdf.length; i++) {
+        if (belediye == asdf[i]) {
+          icon = Icons.favorite;
+          aaa = aaa + 1;
+          break;
+        } else {
+          icon = Icons.favorite_border;
+        }
       }
     }
-
 
     return GestureDetector(
       child: SingleChildScrollView(
