@@ -1,7 +1,12 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:belediyeler/auth/login.dart';
 import 'package:belediyeler/auth/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+
+
+
 
 class LoginRegister extends StatefulWidget {
   @override
@@ -10,16 +15,10 @@ class LoginRegister extends StatefulWidget {
 
 class _LoginRegisterState extends State<LoginRegister> {
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(
-        title: Text('Belediye Takip',
-          style: TextStyle(fontWeight: FontWeight.bold),),
-
-        backgroundColor: Colors.red,
-        elevation: 0,
-      ),
       body: Center(
         child: Container(
           padding: EdgeInsets.all(16),
@@ -30,7 +29,16 @@ class _LoginRegisterState extends State<LoginRegister> {
             children: <Widget>[
               SizedBox(
                 height: 200,
-                child: Image.asset('images/ibb.png'),
+                child: Center(
+                  child: TypewriterAnimatedTextKit(
+                    isRepeatingAnimation: false,
+                    text: ["Belediye Haberleri"],
+                    speed: Duration(milliseconds: 200),
+                    textStyle: TextStyle(
+                      fontSize: 35,
+                    ),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 30,
@@ -38,7 +46,6 @@ class _LoginRegisterState extends State<LoginRegister> {
               SizedBox(
                 height: 48,
                 child: RaisedButton(
-
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(24))),
                   color: Colors.red,
@@ -56,7 +63,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                   onPressed: () {
                     Navigator
                         .of(context)
-                        .pushReplacement(new MaterialPageRoute(
+                        .push(new MaterialPageRoute(
                         builder: (BuildContext context) => Login()));
                   },
                 ),
@@ -84,7 +91,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                   onPressed: () {
                     Navigator
                         .of(context)
-                        .pushReplacement(new MaterialPageRoute(
+                        .push(new MaterialPageRoute(
                         builder: (BuildContext context) => Register()));
                   },
                 ),

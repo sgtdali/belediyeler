@@ -9,7 +9,6 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
-  //deneme
   Widget build(BuildContext context) {
     return StreamProvider<Users>.value(
       value: AuthService().user,
@@ -18,25 +17,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-/* TODO : 1)formlar düzeltilecek Batu
-   2) firebase ortak gmaile taşınacak Tayfun
-   3) bütün arayüzler düzeltilecek
-   4) phyton ile haber içerikleri alınacak Tayfun
-   5) navigaston ile haber içeriğine gidilecek Batu
-   6) anasayfaki card widget düzenleceke
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   */
 }

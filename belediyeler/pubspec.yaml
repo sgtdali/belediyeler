@@ -35,6 +35,10 @@ dependencies:
   flutter_spinkit: ^4.1.2
   firebase_database: ^3.1.6
   lazy_load_scrollview: ^1.1.0
+  firebase_core: ^0.4.5
+  animated_text_kit: ^2.2.0
+  google_fonts: ^1.1.0
+
 
 dev_dependencies:
   flutter_test:

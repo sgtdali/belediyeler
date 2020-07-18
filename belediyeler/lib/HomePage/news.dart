@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
 class News extends StatefulWidget {
   @override
   _NewsState createState() => _NewsState();
