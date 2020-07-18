@@ -23,7 +23,7 @@ class _NewsState extends State<News> {
   var bbb;
   int i = 1;
   int c = 5;
-  Icon icon = Icon(Icons.favorite_border);
+  IconData icon = Icons.favorite_border;
   bool like = false;
   bool loading = true;
   ScrollController _scrollController = new ScrollController();
@@ -81,10 +81,10 @@ class _NewsState extends State<News> {
     List asdf = follows['follow'];
     for (var i = 0; i < asdf.length; i++) {
       if (belediye == asdf[i]) {
-        icon = Icon(Icons.favorite, color: Colors.red,);
+        icon = Icons.favorite;
         break;
       } else {
-        icon = Icon(Icons.favorite_border);
+        icon = Icons.favorite_border;
       }
     }
 
@@ -165,26 +165,21 @@ class _NewsState extends State<News> {
 
                           onPressed: () {
                             setState(() {
-                              print(icon);
-
-
-                              if (icon == Icon(Icons.favorite_border)) {
+                              if (icon == Icons.favorite_border) {
                                 DatabaseService _databaseService =
-                                new DatabaseService(uid: user.uid);
-                                dynamic result = _databaseService
-                                    .updateUserFollow(belediye);
+                                    new DatabaseService(uid: user.uid);
+                                dynamic result =
+                                    _databaseService.updateUserFollow(belediye);
                                 print("333");
                               } else {
                                 DatabaseService _databaseService =
-                                new DatabaseService(uid: user.uid);
-                                dynamic result = _databaseService
-                                    .deleteUserFollow(belediye);
+                                    new DatabaseService(uid: user.uid);
+                                dynamic result =
+                                    _databaseService.deleteUserFollow(belediye);
                               }
                             });
                           },
-
-                          child: icon),
-
+                          child: Icon(icon)),
                     )
                   ],
                 ),
