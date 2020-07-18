@@ -7,7 +7,7 @@ class RealTimeDatabase {
 
   dataformfirebase() async {
     DatabaseReference postref2 =
-        await FirebaseDatabase.instance.reference().child('haberler');
+        await FirebaseDatabase.instance.reference().child('haberlertarihleri');
     await postref2.once().then((DataSnapshot snap) {
       var DATA = snap.value.keys;
       var DATA2 = snap.value;
@@ -15,11 +15,11 @@ class RealTimeDatabase {
         tarih.add(DATA2[dat]);
       }
       tarih.sort((a, b) {
-        var adate = a['tarihsiralama']; //before -> var adate = a.expiry;
-        var bdate = b['tarihsiralama']; //var bdate = b.expiry;
+        var adate = a['tarih']; //before -> var adate = a.expiry;
+        var bdate = b['tarih']; //var bdate = b.expiry;
         return bdate.compareTo(adate);
       });
-      print(tarih[1]['haberbaslik']);
+      print(tarih.length);
     });
   }
 }

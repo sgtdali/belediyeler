@@ -1,5 +1,7 @@
 import 'package:belediyeler/HomePage/mainpage.dart';
 import 'package:belediyeler/auth/loginregister.dart';
+import 'package:belediyeler/firebase/firebase.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +15,8 @@ class Chooser extends StatelessWidget {
     if (user == null) {
       return LoginRegister();
     } else {
-      return homepage();
+      return StreamProvider<DocumentSnapshot>.value(
+          value: DatabaseService(uid: user.uid).follow, child: homepage());
     }
   }
 }

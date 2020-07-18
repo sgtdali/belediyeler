@@ -37,4 +37,34 @@ class DatabaseService {
   Stream<List<Userind>> get Users {
     return userCollection.snapshots().map(userfromsnapshot);
   }
+
+  DocumentSnapshot usersfollow(DocumentSnapshot snapshot) {
+    return snapshot;
+  }
+
+  Stream<DocumentSnapshot> get follow {
+    return userCollection.document(uid).snapshots().map(usersfollow);
+  }
+
+  Future updateUserFollow(String belediye) async {
+    try {
+      return await userCollection.document(uid).updateData({
+        'follow': FieldValue.arrayUnion([belediye])
+        //'follow': FieldValue.arrayRemove(['ABB'])
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future deleteUserFollow(String belediye) async {
+    try {
+      return await userCollection.document(uid).updateData({
+        //'follow': FieldValue.arrayUnion([belediye])
+        'follow': FieldValue.arrayRemove([belediye])
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

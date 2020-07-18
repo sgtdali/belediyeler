@@ -10,7 +10,7 @@ class NewsDetail extends StatelessWidget {
   String belediye;
   String tarih;
 
-  String index;
+  int index;
 
   NewsDetail(this.URL, this.haberbaslik, this.belediye, this.tarih, this.index);
 
