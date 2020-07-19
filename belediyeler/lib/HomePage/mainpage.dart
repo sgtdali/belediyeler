@@ -35,16 +35,15 @@ class _homepageState extends State<homepage> {
   }
 
   int _selectedIndex = 0;
-  String _title = "Home";
+  String _title = 'Ana Akış';
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetoptions = [
-    HomePage(),
     News(),
+    HomePage(),
     userList(),
   ];
-
 
   void _onItemTapped(int index) {
     setState(() {
@@ -52,22 +51,22 @@ class _homepageState extends State<homepage> {
       switch (index) {
         case 0:
           {
-            _title = 'Home';
+            _title = 'Ana Akış';
           }
           break;
         case 1:
           {
-            _title = 'Likes';
+            _title = 'Takip Ettiklerim';
           }
           break;
         case 2:
           {
-            _title = 'Profile';
+            _title = 'Profil';
           }
           break;
       }
       if (_title == null) {
-        _title = "home";
+        _title = 'Ana Akış';
       }
     });
   }
@@ -91,15 +90,15 @@ class _homepageState extends State<homepage> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text('home'),
+              title: Text('Ana Akış'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.subscriptions),
-              title: Text('like'),
+              title: Text('Takip Ettiklerim'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              title: Text('settings'),
+              title: Text('Profil'),
             ),
           ],
           currentIndex: _selectedIndex,

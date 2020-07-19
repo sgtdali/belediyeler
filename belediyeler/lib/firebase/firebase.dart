@@ -17,6 +17,20 @@ class DatabaseService {
         'surname': surname,
         'age': age,
         'uid': uid,
+        'follow': FieldValue.arrayUnion([]),
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future update2UserData(String name, String surname, String age) async {
+    try {
+      return await userCollection.document(uid).updateData({
+        'name': name,
+        'surname': surname,
+        'age': age,
+        'uid': uid,
       });
     } catch (e) {
       print(e.toString());
@@ -24,6 +38,7 @@ class DatabaseService {
   }
 
   List<Userind> userfromsnapshot(QuerySnapshot snapshot) {
+    print("çalıştım2");
     return snapshot.documents.map((doc) {
       return Userind(
         name: doc.data['name'],

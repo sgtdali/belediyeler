@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../chooser.dart';
+import 'authentication.dart';
 
 class userList extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _userListState extends State<userList> {
   String aaa;
   String bbb;
   String ccc;
+  static AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -80,14 +82,20 @@ class _userListState extends State<userList> {
                           DatabaseService _databaseService =
                               new DatabaseService(uid: user.uid);
                           dynamic result = await _databaseService
-                              .updateUserData(aaa, bbb, ccc);
+                              .update2UserData(aaa, bbb, ccc);
                           Navigator.of(context).pushReplacement(
                               new MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       Chooser()));
                         },
                         child: Text('GİRİŞ'),
-                      )
+                      ),
+                      RaisedButton(
+                        onPressed: () async {
+                          dynamic result = await _authService.signOut();
+                        },
+                        child: Text('Çıkış'),
+                      ),
                     ],
                   ),
                 ),

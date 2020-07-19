@@ -1,4 +1,3 @@
-import 'package:belediyeler/chooser.dart';
 import 'package:belediyeler/firebase/authentication.dart';
 import 'package:belediyeler/shared/spinner.dart';
 import 'package:flutter/material.dart';
@@ -63,12 +62,12 @@ class _LoginState extends State<Login> {
                       setState(() => loading = false);
                       print('error');
                     } else {
-                      print('sig in');
-                      Navigator.of(context).pushReplacement(
-                          new MaterialPageRoute(
-                              builder: (BuildContext context) => Chooser()));
-                    }
-                  },
+                            print('sig in');
+                            setState(() => loading = false);
+
+                            Navigator.pop(context);
+                          }
+                        },
                   child: Text('GİRİŞ'),
                 )
               ],
