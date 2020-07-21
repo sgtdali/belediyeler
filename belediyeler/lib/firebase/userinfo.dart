@@ -1,3 +1,4 @@
+import 'package:belediyeler/HomePage/belediyelist.dart';
 import 'package:belediyeler/firebase/firebase.dart';
 import 'package:belediyeler/firebase/userindinfo.dart';
 import 'package:belediyeler/firebase/users.dart';
@@ -44,6 +45,9 @@ class _userListState extends State<userList> {
     return loading
         ? spinner()
         : Scaffold(
+            appBar: AppBar(
+              title: Text("Profil"),
+            ),
             body: Center(
               child: Container(
                 child: Form(
@@ -55,52 +59,62 @@ class _userListState extends State<userList> {
                         decoration: InputDecoration(
                             hintText: Name,
                             hintStyle: TextStyle(color: Colors.black)),
-                        validator: (val) => val.isEmpty ? 'İsim giriniz' : null,
-                        onChanged: (input) => setState(() => aaa = input),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: Surname),
-                        validator: (val) => val.isEmpty ? 'İsim giriniz' : null,
-                        onChanged: (input) => setState(() => bbb = input),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: Age),
-                        validator: (val) => val.isEmpty ? 'İsim giriniz' : null,
-                        onChanged: (input) => setState(() => ccc = input),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      RaisedButton(
-                        onPressed: () async {
-                          DatabaseService _databaseService =
-                              new DatabaseService(uid: user.uid);
-                          dynamic result = await _databaseService
-                              .update2UserData(aaa, bbb, ccc);
-                          Navigator.of(context).pushReplacement(
-                              new MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      Chooser()));
-                        },
-                        child: Text('GİRİŞ'),
-                      ),
-                      RaisedButton(
-                        onPressed: () async {
-                          dynamic result = await _authService.signOut();
-                        },
-                        child: Text('Çıkış'),
-                      ),
-                    ],
-                  ),
+                  validator: (val) => val.isEmpty ? 'İsim giriniz' : null,
+                  onChanged: (input) => setState(() => aaa = input),
                 ),
-              ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: Surname),
+                  validator: (val) => val.isEmpty ? 'İsim giriniz' : null,
+                  onChanged: (input) => setState(() => bbb = input),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: Age),
+                  validator: (val) => val.isEmpty ? 'İsim giriniz' : null,
+                  onChanged: (input) => setState(() => ccc = input),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                RaisedButton(
+                  onPressed: () async {
+                    DatabaseService _databaseService =
+                    new DatabaseService(uid: user.uid);
+                    dynamic result = await _databaseService
+                        .update2UserData(aaa, bbb, ccc);
+                    Navigator.of(context).pushReplacement(
+                        new MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Chooser()));
+                  },
+                  child: Text('GİRİŞ'),
+                ),
+                RaisedButton(
+                  onPressed: () async {
+                    dynamic result = await _authService.signOut();
+                  },
+                  child: Text('Çıkış'),
+                ),
+                RaisedButton(
+                  elevation: 100,
+                  child: Text('Belediye Listesi'),
+                  onPressed: () {
+                    Navigator
+                        .of(context)
+                        .push(new MaterialPageRoute(
+                        builder: (BuildContext context) => belediyeList()));
+                  },
+                ),
+              ],
             ),
-          );
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -60,6 +60,7 @@ class _NewsDetail1State extends State<NewsDetail1> {
     DatabaseReference postref2 = FirebaseDatabase.instance
         .reference()
         .child('haberler')
+        .child(RealTimeDatabase.tarih[b]['belediyeismi'])
         .child(RealTimeDatabase.tarih[b]['name']);
     await postref2.once().then((DataSnapshot snap) {
       var DATA = snap.value;
@@ -69,7 +70,6 @@ class _NewsDetail1State extends State<NewsDetail1> {
 
         setState(() {
           Liste.add(Text1(haber1));
-          print(Liste.length);
         });
       }
     });

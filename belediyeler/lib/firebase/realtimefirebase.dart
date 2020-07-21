@@ -4,8 +4,10 @@ class RealTimeDatabase {
   static var aaa;
   static var bbb;
   static List tarih = [];
+  static List postList = [];
 
   dataformfirebase() async {
+    tarih = [];
     DatabaseReference postref2 =
         await FirebaseDatabase.instance.reference().child('haberlertarihleri');
     await postref2.once().then((DataSnapshot snap) {
@@ -19,7 +21,7 @@ class RealTimeDatabase {
         var bdate = b['tarih']; //var bdate = b.expiry;
         return bdate.compareTo(adate);
       });
-      print(tarih.length);
     });
   }
+
 }

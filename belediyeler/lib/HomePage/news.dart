@@ -25,8 +25,9 @@ class _NewsState extends State<News> {
   int i = 1;
   int c = 5;
   IconData icon = Icons.favorite_border;
-  bool like = false;
+
   bool loading = true;
+  bool loading1 = false;
   ScrollController _scrollController = new ScrollController();
 
   @override
@@ -56,29 +57,33 @@ class _NewsState extends State<News> {
 
   @override
   Widget build(BuildContext context) {
+    var follows = Provider.of<DocumentSnapshot>(context);
     return loading
         ? spinner()
         : Scaffold(
+      appBar: AppBar(
+        title: Text("Deneme News"),
+      ),
       body: ListView.builder(
         controller: _scrollController,
         itemBuilder: (_, index) {
           return newsUI(
-                    postList[index].haberbaslik,
-                    postList[index].url,
-                    postList[index].belediye,
-                    postList[index].tarih,
-                    index,
-                    context);
-              },
+              postList[index].haberbaslik,
+              postList[index].url,
+              postList[index].belediye,
+              postList[index].tarih,
+              index,
+              follows);
+        },
         itemCount: postList.length,
       ),
     );
   }
 
   Widget newsUI(String haberbaslik, String URL, String belediye, String tarih,
-      int index, BuildContext context) {
-    var follows = Provider.of<DocumentSnapshot>(context);
+      int index, var follows) {
     var aaa = 0;
+
     final user = Provider.of<Users>(context);
     List asdf = follows['follow'];
     if (asdf.length == 0) {
@@ -176,13 +181,12 @@ class _NewsState extends State<News> {
                                     new DatabaseService(uid: user.uid);
                                 dynamic result =
                                     _databaseService.updateUserFollow(belediye);
-                                print("true");
                               } else {
                                 DatabaseService _databaseService =
                                     new DatabaseService(uid: user.uid);
                                 dynamic result =
                                     _databaseService.deleteUserFollow(belediye);
-                                print('else');
+
                               }
                             });
                           },
@@ -207,6 +211,7 @@ class _NewsState extends State<News> {
     DatabaseReference postref2 = FirebaseDatabase.instance
         .reference()
         .child('haberler')
+        .child(RealTimeDatabase.tarih[b]['belediyeismi'])
         .child(RealTimeDatabase.tarih[b]['name']);
     await postref2.once().then((DataSnapshot snap) {
       var DATA = snap.value;
@@ -217,10 +222,11 @@ class _NewsState extends State<News> {
 
         DATA['belediye'],
         DATA['tarih'],
+
       );
 
 
-
+      print("get data");
       setState(() {
         postList.add(news1);
 

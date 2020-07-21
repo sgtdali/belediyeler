@@ -41,9 +41,10 @@ class _homepageState extends State<homepage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetoptions = [
     News(),
-    HomePage(),
+
     userList(),
   ];
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -78,13 +79,31 @@ class _homepageState extends State<homepage> {
         : StreamProvider<List<Userind>>.value(
       value: DatabaseService().Users,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("$_title",
-            textAlign: TextAlign.center,
-          ),
-        ),
-        body: Center(
-          child: _widgetoptions.elementAt(_selectedIndex),
+
+        body: new Stack(
+          children: <Widget>[
+            new Offstage(
+              offstage: _selectedIndex != 0,
+              child: new TickerMode(
+                enabled: _selectedIndex == 0,
+                child: new MaterialApp(home: new News()),
+              ),
+            ),
+            new Offstage(
+              offstage: _selectedIndex != 1,
+              child: new TickerMode(
+                enabled: _selectedIndex == 1,
+                child: new MaterialApp(home: new HomePage()),
+              ),
+            ),
+            new Offstage(
+              offstage: _selectedIndex != 2,
+              child: new TickerMode(
+                enabled: _selectedIndex == 2,
+                child: new MaterialApp(home: new userList()),
+              ),
+            ),
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
@@ -108,4 +127,5 @@ class _homepageState extends State<homepage> {
       ),
     );
   }
+
 }
